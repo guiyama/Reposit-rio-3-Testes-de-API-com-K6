@@ -1,1 +1,28 @@
+name: K6 API Tests
 
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  k6-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Executar testes k6
+        run: |
+          k6 run --summary-export=summary.json tests/*.js
+
+      - name: Upload do relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-summary
+          path: summary.json
