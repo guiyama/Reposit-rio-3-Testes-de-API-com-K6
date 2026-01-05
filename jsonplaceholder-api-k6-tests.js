@@ -8,7 +8,7 @@ export const options = {
 
 export default function () {
 
-  // 🔹 TESTE GET
+  // TESTE GET
   const getResponse = http.get(
     'https://jsonplaceholder.typicode.com/comments'
   );
@@ -24,7 +24,7 @@ export default function () {
 
   sleep(1);
 
-  // 🔹 TESTE POST
+  // TESTE POST
   const payload = JSON.stringify({
     userId: 1,
     title: 'Nova ID',
@@ -50,4 +50,5 @@ export default function () {
   });
 
   sleep(1);
+
 }
